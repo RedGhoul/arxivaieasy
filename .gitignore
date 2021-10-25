@@ -4,7 +4,20 @@
 /src/main/webapp/content/css/main.css
 /target/classes/static/**
 /src/test/javascript/coverage/
-
+/target/antrun
+/target/classes
+/target/generated-sources
+/target/generated-test-sources
+/target/h2db
+/target/maven-archiver
+/target/maven-status
+/target/node
+/target/test-classes
+/target/webpack
+/target/site/jacoco
+target/surefire-reports
+/lib
+/src/test/javascript/coverage/
 ######################
 # Node
 ######################
@@ -80,7 +93,6 @@ out/
 # Maven
 ######################
 /log/
-/target/
 
 ######################
 # Gradle
@@ -91,7 +103,6 @@ out/
 ######################
 # Package Files
 ######################
-*.jar
 *.war
 *.ear
 *.db
@@ -157,3 +168,7 @@ Desktop.ini
 ######################
 /coverage/
 /.nyc_output/
+target/checksums.csv
+target/checksums.csv.old
+target/jacoco.exec
+target/ar-xiv-ai-0.0.1-SNAPSHOT.jar.original
