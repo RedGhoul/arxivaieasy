@@ -1,0 +1,35 @@
+{
+  "name": "LikeEntry",
+  "fields": [
+    {
+      "fieldName": "createDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "appUser",
+      "otherEntityRelationshipName": "likeEntry",
+      "relationshipName": "appUser",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "paper",
+      "otherEntityRelationshipName": "likeEntry",
+      "relationshipName": "paper",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "like_entry",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211023235331"
+}

@@ -48,6 +48,17 @@ public class CacheConfiguration {
             createCache(cm, com.ava.arxivai.domain.User.class.getName());
             createCache(cm, com.ava.arxivai.domain.Authority.class.getName());
             createCache(cm, com.ava.arxivai.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.ava.arxivai.domain.Author.class.getName());
+            createCache(cm, com.ava.arxivai.domain.Author.class.getName() + ".papers");
+            createCache(cm, com.ava.arxivai.domain.Paper.class.getName());
+            createCache(cm, com.ava.arxivai.domain.Paper.class.getName() + ".authors");
+            createCache(cm, com.ava.arxivai.domain.Paper.class.getName() + ".likeEntries");
+            createCache(cm, com.ava.arxivai.domain.Subject.class.getName());
+            createCache(cm, com.ava.arxivai.domain.LikeEntry.class.getName());
+            createCache(cm, com.ava.arxivai.domain.LikeEntry.class.getName() + ".appUsers");
+            createCache(cm, com.ava.arxivai.domain.LikeEntry.class.getName() + ".papers");
+            createCache(cm, com.ava.arxivai.domain.AppUser.class.getName());
+            createCache(cm, com.ava.arxivai.domain.AppUser.class.getName() + ".likeEntries");
             // jhipster-needle-ehcache-add-entry
         };
     }

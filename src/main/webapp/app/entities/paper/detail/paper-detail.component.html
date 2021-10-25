@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="paper">
+      <h2 data-cy="paperDetailsHeading"><span>Paper</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ paper.id }}</span>
+        </dd>
+        <dt><span>Title</span></dt>
+        <dd>
+          <span>{{ paper.title }}</span>
+        </dd>
+        <dt><span>Abstract Text</span></dt>
+        <dd>
+          <span>{{ paper.abstractText }}</span>
+        </dd>
+        <dt><span>Submited Date</span></dt>
+        <dd>
+          <span>{{ paper.submitedDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ paper.createdDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Pdf Link</span></dt>
+        <dd>
+          <span>{{ paper.pdfLink }}</span>
+        </dd>
+        <dt><span>Base Link</span></dt>
+        <dd>
+          <span>{{ paper.baseLink }}</span>
+        </dd>
+        <dt><span>Author</span></dt>
+        <dd>
+          <span *ngFor="let author of paper.authors; let last = last">
+            <a [routerLink]="['/author', author?.id, 'view']">{{ author.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/paper', paper.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

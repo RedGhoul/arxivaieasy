@@ -1,0 +1,48 @@
+
+entity Author {
+	name String required
+    historyLink String required
+}
+
+entity Paper {
+	title String required
+    abstractText TextBlob required
+    submitedDate LocalDate
+	createdDate LocalDate
+    pdfLink String required
+}
+
+entity Subject {
+	title String required
+}
+
+entity LikeEntry {
+	createDate LocalDate
+}
+
+entity AppUser {
+    bio TextBlob
+    createdDate LocalDate
+}
+
+relationship OneToOne {
+	AppUser to User
+}
+
+relationship ManyToMany {
+  	Paper{Author} to Author{Paper}
+    LikeEntry{AppUser} to AppUser{LikeEntry}
+    LikeEntry{Paper} to Paper{LikeEntry}
+}
+
+// Set pagination options
+paginate Paper, Subject, Author, LikeEntry with infinite-scroll
+
+// Use Data Transfer Objects (DTO)
+//dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

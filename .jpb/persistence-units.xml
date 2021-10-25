@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PersistenceUnitSettings">
+    <persistence-units>
+      <persistence-unit name="Default" defaultIncludeChangeLogFile="src/main/resources/config/liquibase/master.xml">
+        <packages>
+          <package value="com.ava.arxivai.config" />
+        </packages>
+      </persistence-unit>
+      <persistence-unit name="Main">
+        <packages>
+          <package value="" />
+        </packages>
+      </persistence-unit>
+    </persistence-units>
+  </component>
+</project>
