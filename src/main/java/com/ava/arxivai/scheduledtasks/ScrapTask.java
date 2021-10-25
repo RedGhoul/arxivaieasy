@@ -34,7 +34,7 @@ public class ScrapTask {
         this.subjectRepository = subjectRepository;
     }
 
-    @Scheduled(cron = "0 */6 * * * ?")
+    @Scheduled(cron = "0 0 */1 * * *")
     public void getDateFromSite() throws IOException, InterruptedException {
         String baseUrl = "https://arxiv.org";
         Document doc = Jsoup.connect(baseUrl + "/list/cs.AI/pastweek?show=300").get();
