@@ -9,6 +9,7 @@ import com.ava.arxivai.repository.SubjectRepository;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -33,8 +34,7 @@ public class ScrapTask {
         this.subjectRepository = subjectRepository;
     }
 
-    @Scheduled(cron = "0 0 */1 * * *")
-    //@Scheduled(fixedRate = 5000000)
+    @Scheduled(fixedRate = 50000000)
     public void getDateFromSite() throws IOException, InterruptedException {
         String baseUrl = "https://arxiv.org";
 
@@ -53,7 +53,7 @@ public class ScrapTask {
             }
 
             for (String curBaseUrl : baseUrls) {
-                //TimeUnit.SECONDS.sleep(30);
+                TimeUnit.SECONDS.sleep(30);
                 Document newDoc = Jsoup.connect(curBaseUrl).get();
                 var arxivPDFLinkNode = newDoc.select(".abs-button.download-pdf");
                 var arxivPDFLinkText = baseUrl + arxivPDFLinkNode.attr("href");
