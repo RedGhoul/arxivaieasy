@@ -6,6 +6,7 @@ import { mergeMap } from 'rxjs/operators';
 
 import { IPaper, Paper } from '../paper.model';
 import { PaperService } from '../service/paper.service';
+import { AccountService } from '../../../core/auth/account.service';
 
 @Injectable({ providedIn: 'root' })
 export class PaperRoutingResolveService implements Resolve<IPaper> {
@@ -14,7 +15,7 @@ export class PaperRoutingResolveService implements Resolve<IPaper> {
   resolve(route: ActivatedRouteSnapshot): Observable<IPaper> | Observable<never> {
     const id = route.params['id'];
     if (id) {
-      return this.service.find(id).pipe(
+      return this.service.findPublic(id).pipe(
         mergeMap((paper: HttpResponse<Paper>) => {
           if (paper.body) {
             return of(paper.body);

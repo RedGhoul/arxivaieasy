@@ -1,6 +1,6 @@
 <div class="row justify-content-center">
   <div class="col-8">
-    <div *ngIf="paper">
+    <div *ngIf="paper && canUserEdit">
       <h2 data-cy="paperDetailsHeading"><span>Paper</span></h2>
 
       <hr />
@@ -22,7 +22,7 @@
         <dd>
           <span>{{ paper.abstractText }}</span>
         </dd>
-        <dt><span>Submited Date</span></dt>
+        <dt><span>Submitted Date</span></dt>
         <dd>
           <span>{{ paper.submitedDate | formatMediumDate }}</span>
         </dd>
@@ -38,7 +38,7 @@
         <dd>
           <span>{{ paper.baseLink }}</span>
         </dd>
-        <dt><span>Author</span></dt>
+        <dt><span>Authors</span></dt>
         <dd>
           <span *ngFor="let author of paper.authors; let last = last">
             <a [routerLink]="['/author', author?.id, 'view']">{{ author.id }}</a
@@ -54,6 +54,44 @@
       <button type="button" [routerLink]="['/paper', paper.id, 'edit']" class="btn btn-primary">
         <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
       </button>
+    </div>
+    <div *ngIf="paper && !canUserEdit">
+      <h2 data-cy="paperDetailsHeading">
+        <span>{{ paper.title }}</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>Author</span></dt>
+        <dd>
+          <span *ngFor="let author of paper.authors; let last = last">
+            <a [routerLink]="['/author', author?.id, 'view']">{{ author.name }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span>Abstract</span></dt>
+        <dd>
+          <span>{{ paper.abstractText }}</span>
+        </dd>
+        <dt><span>Submitted Date</span></dt>
+        <dd>
+          <span>{{ paper.submitedDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+          <span>{{ paper.createdDate | formatMediumDate }}</span>
+        </dd>
+      </dl>
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+      <a [href]="paper.baseLink" class="btn btn-info">View On Arxiv</a>
+      <a [href]="paper.pdfLink" class="btn btn-info">View Full PDF</a>
     </div>
   </div>
 </div>

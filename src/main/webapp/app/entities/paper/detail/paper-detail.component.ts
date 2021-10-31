@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { IPaper } from '../paper.model';
 import { DataUtils } from 'app/core/util/data-util.service';
+import { AccountService } from '../../../core/auth/account.service';
 
 @Component({
   selector: 'jhi-paper-detail',
@@ -10,10 +11,15 @@ import { DataUtils } from 'app/core/util/data-util.service';
 })
 export class PaperDetailComponent implements OnInit {
   paper: IPaper | null = null;
-
-  constructor(protected dataUtils: DataUtils, protected activatedRoute: ActivatedRoute) {}
+  canUserEdit = false;
+  constructor(protected accountService: AccountService, protected dataUtils: DataUtils, protected activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.accountService.getAuthenticationState().subscribe(acc => {
+      if (acc != null) {
+        this.canUserEdit = true;
+      }
+    });
     this.activatedRoute.data.subscribe(({ paper }) => {
       this.paper = paper;
     });

@@ -20,11 +20,14 @@ public interface PaperRepository extends JpaRepository<Paper, Long> {
     )
     Page<Paper> findAllWithEagerRelationships(Pageable pageable);
 
-    @Query("select distinct paper from Paper paper left join fetch paper.authors")
-    List<Paper> findAllWithEagerRelationships();
-
     @Query("select paper from Paper paper left join fetch paper.authors left join fetch paper.subjects where paper.id =:id")
     Optional<Paper> findOneWithEagerRelationships(@Param("id") Long id);
 
     boolean existsByAbstractText(String arxivAbstractText);
+
+    @Query(
+        value = "select paper from Paper paper where paper.abstractText like %:search% or paper.title like %:search% order by paper.createdDate",
+        countQuery = "select count(distinct paper) from Paper paper"
+    )
+    Page<Paper> findAllWith(@Param("search") String search, Pageable pageable);
 }

@@ -17,7 +17,6 @@ import org.mapstruct.Builder;
  */
 @Entity
 @Table(name = "paper")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Paper implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,8 +48,7 @@ public class Paper implements Serializable {
     @Column(name = "base_link", nullable = false, unique = true)
     private String baseLink;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "rel_paper__author",
         joinColumns = @JoinColumn(name = "paper_id"),
@@ -59,13 +57,7 @@ public class Paper implements Serializable {
     @JsonIgnoreProperties(value = { "papers" }, allowSetters = true)
     private Set<Author> authors = new HashSet<>();
 
-    @ManyToMany(mappedBy = "papers")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "appUsers", "papers" }, allowSetters = true)
-    private Set<LikeEntry> likeEntries = new HashSet<>();
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "rel_paper__subject",
         joinColumns = @JoinColumn(name = "paper_id"),
@@ -73,6 +65,10 @@ public class Paper implements Serializable {
     )
     @JsonIgnoreProperties(value = { "papers" }, allowSetters = true)
     private Set<Subject> subjects = new HashSet<>();
+
+    @ManyToMany(mappedBy = "papers", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties(value = { "appUsers", "papers" }, allowSetters = true)
+    private Set<LikeEntry> likeEntries = new HashSet<>();
 
     public void setSubjects(Set<Subject> Subjects) {
         this.subjects = Subjects;

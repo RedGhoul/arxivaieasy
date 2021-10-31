@@ -1,6 +1,7 @@
 import * as dayjs from 'dayjs';
 import { IAuthor } from 'app/entities/author/author.model';
 import { ILikeEntry } from 'app/entities/like-entry/like-entry.model';
+import { ISubject } from '../subject/subject.model';
 
 export interface IPaper {
   id?: number;
@@ -11,6 +12,7 @@ export interface IPaper {
   pdfLink?: string;
   baseLink?: string;
   authors?: IAuthor[] | null;
+  subjects?: ISubject[] | null;
   likeEntries?: ILikeEntry[] | null;
 }
 
@@ -24,7 +26,8 @@ export class Paper implements IPaper {
     public pdfLink?: string,
     public baseLink?: string,
     public authors?: IAuthor[] | null,
-    public likeEntries?: ILikeEntry[] | null
+    public likeEntries?: ILikeEntry[] | null,
+    public subjects?: ISubject[] | null
   ) {}
 }
 

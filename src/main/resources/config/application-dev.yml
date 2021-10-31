@@ -32,7 +32,7 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/test
+    url: jdbc:postgresql://localhost:5432/arxivai
     username: postgres
     password: password
     hikari:
@@ -41,20 +41,13 @@ spring:
   jpa:
     database: POSTGRESQL
     show-sql: true
-  #    hibernate:
-  #      ddl-auto: validate
-  #    database-platform: tech.jhipster.domain.util.FixedPostgreSQL10Dialect
 
   flyway:
-    locations: 'classpath:db/migration,filesystem:/opt/migration'
-    url: jdbc:postgresql://localhost:5432/test
-    schemas: public
+    locations: 'classpath:db/migration'
+    url: jdbc:postgresql://localhost:5432/arxivai
     username: postgres
     password: password
 
-  #  liquibase:
-  #    # Remove 'faker' if you do not want the sample data to be loaded automatically
-  #    contexts: dev
   mail:
     host: localhost
     port: 25

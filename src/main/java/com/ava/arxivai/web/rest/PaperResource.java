@@ -3,6 +3,7 @@ package com.ava.arxivai.web.rest;
 import com.ava.arxivai.domain.Paper;
 import com.ava.arxivai.repository.PaperRepository;
 import com.ava.arxivai.web.rest.errors.BadRequestAlertException;
+import io.swagger.annotations.Authorization;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -183,6 +185,14 @@ public class PaperResource {
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 
+    @GetMapping("/papers/public")
+    public ResponseEntity<List<Paper>> getAllPapers(Pageable pageable, @RequestParam(required = false) String find) {
+        log.debug("REST request to get a page of Papers");
+        Page<Paper> page = paperRepository.findAllWith(find, pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
     /**
      * {@code GET  /papers/:id} : get the "id" paper.
      *
@@ -191,6 +201,19 @@ public class PaperResource {
      */
     @GetMapping("/papers/{id}")
     public ResponseEntity<Paper> getPaper(@PathVariable Long id) {
+        log.debug("REST request to get Paper : {}", id);
+        Optional<Paper> paper = paperRepository.findOneWithEagerRelationships(id);
+        return ResponseUtil.wrapOrNotFound(paper);
+    }
+
+    /**
+     * {@code GET  /papers/:id} : get the "id" paper.
+     *
+     * @param id the id of the paper to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the paper, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/papers/public/{id}")
+    public ResponseEntity<Paper> getPaperPublic(@PathVariable Long id) {
         log.debug("REST request to get Paper : {}", id);
         Optional<Paper> paper = paperRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(paper);
