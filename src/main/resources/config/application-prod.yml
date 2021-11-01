@@ -45,7 +45,6 @@ spring:
   flyway:
     locations: 'classpath:db/migration'
     url: ${JDBC_STRING}
-    schemas: public
     username: ${JDBC_USER_NAME}
     password: ${JDBC_PASSWORD}
   mail:
