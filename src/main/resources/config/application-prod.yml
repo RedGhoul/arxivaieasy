@@ -41,8 +41,7 @@ spring:
       poolName: Hikari
       auto-commit: false
   jpa:
-    database-platform: tech.jhipster.domain.util.FixedPostgreSQL10Dialect
-  # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
+    database: mysql
   flyway:
     locations: 'classpath:db/migration,filesystem:/opt/migration'
     url: ${JDBC_STRING}

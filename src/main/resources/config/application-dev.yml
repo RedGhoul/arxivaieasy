@@ -32,22 +32,21 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/arxivai
-    username: postgres
+    url: jdbc:mysql://localhost:3306/arxivai
+    username: root
     password: password
     hikari:
       poolName: Hikari
       auto-commit: false
+
   jpa:
-    database: POSTGRESQL
-    show-sql: true
+    database: mysql
 
   flyway:
-    locations: 'classpath:db/migration'
-    url: jdbc:postgresql://localhost:5432/arxivai
-    username: postgres
+    url: jdbc:mysql://localhost:3306/arxivai
+    username: root
     password: password
-
+    locations: 'classpath:db/migration'
   mail:
     host: localhost
     port: 25
