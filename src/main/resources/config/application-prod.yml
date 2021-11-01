@@ -43,7 +43,7 @@ spring:
   jpa:
     database: mysql
   flyway:
-    locations: 'classpath:db/migration,filesystem:/opt/migration'
+    locations: 'classpath:db/migration'
     url: ${JDBC_STRING}
     schemas: public
     username: ${JDBC_USER_NAME}
