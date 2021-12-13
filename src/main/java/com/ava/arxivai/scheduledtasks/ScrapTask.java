@@ -34,7 +34,7 @@ public class ScrapTask {
         this.subjectRepository = subjectRepository;
     }
 
-    @Scheduled(fixedRate = 50000000)
+    @Scheduled(cron = "*/300 * * * *")
     public void getDateFromSite() throws IOException, InterruptedException {
         String baseUrl = "https://arxiv.org";
 
@@ -98,7 +98,7 @@ public class ScrapTask {
                     }
                 }
 
-                Set<Author> auths = new HashSet<Author>();
+                Set<Author> auths = new HashSet<>();
                 for (Map.Entry<String, String> entry : arxivAuthorsMap.entrySet()) {
                     if (!authorRepository.existsAuthorByName(entry.getKey())) {
                         Author newAut = new Author();
