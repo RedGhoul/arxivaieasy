@@ -34,7 +34,7 @@ public class ScrapTask {
         this.subjectRepository = subjectRepository;
     }
 
-    @Scheduled(cron = "*/300 * * * *")
+    @Scheduled(cron = "0 15 10 * * ?")
     public void getDateFromSite() throws IOException, InterruptedException {
         String baseUrl = "https://arxiv.org";
 
