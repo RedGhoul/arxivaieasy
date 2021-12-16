@@ -114,12 +114,12 @@ spring:
       thread-name-prefix: ar-xiv-ai-task-
       pool:
         core-size: 2
-        max-size: 50
+        max-size: 55
         queue-capacity: 10000
     scheduling:
       thread-name-prefix: ar-xiv-ai-scheduling-
       pool:
-        size: 2
+        size: 3
   thymeleaf:
     mode: HTML
   output:
