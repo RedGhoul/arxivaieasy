@@ -30,11 +30,17 @@ spring:
   jackson:
     serialization:
       indent-output: true
+  elasticsearch:
+    rest:
+      username: "elastic"
+      password: "77z"
+      url: "elastic.experimentsinthedeep3.com"
+
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://localhost:3306/arxivai
-    username: root
-    password: password
+    username: root2
+    password: Basappa123)
     hikari:
       poolName: Hikari
       auto-commit: false
@@ -44,8 +50,8 @@ spring:
 
   flyway:
     url: jdbc:mysql://localhost:3306/arxivai
-    username: root
-    password: password
+    username: root2
+    password: Basappa123)
     locations: 'classpath:db/migration'
   mail:
     host: localhost

@@ -48,6 +48,11 @@ spring:
     url: ${JDBC_STRING}
     username: ${JDBC_USER_NAME}
     password: ${JDBC_PASSWORD}
+  elasticsearch:
+    rest:
+      username: "elastic"
+      password: ${ELASTIC_PASSWORD}
+      url: "elastic.experimentsinthedeep3.com"
   mail:
     host: localhost
     port: 25

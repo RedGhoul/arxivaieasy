@@ -6,10 +6,6 @@ import com.ava.arxivai.domain.Subject;
 import com.ava.arxivai.repository.AuthorRepository;
 import com.ava.arxivai.repository.PaperRepository;
 import com.ava.arxivai.repository.SubjectRepository;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -19,6 +15,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class ScrapTask {
@@ -34,7 +35,7 @@ public class ScrapTask {
         this.subjectRepository = subjectRepository;
     }
 
-    @Scheduled(cron = "0 15 10 * * ?")
+    @Scheduled(cron = "0 12 10 * * ?")
     public void getDateFromSite() throws IOException, InterruptedException {
         String baseUrl = "https://arxiv.org";
 
