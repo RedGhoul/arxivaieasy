@@ -19,7 +19,6 @@ logging:
     tech.jhipster: DEBUG
     org.hibernate.SQL: DEBUG
     com.ava.arxivai: DEBUG
-
 spring:
   devtools:
     restart:
@@ -32,9 +31,9 @@ spring:
       indent-output: true
   elasticsearch:
     rest:
-      username: "elastic"
-      password: "77z"
-      url: "elastic.experimentsinthedeep3.com"
+      username: 'elastic'
+      password: ''
+      url: 'elastic.experimentsinthedeep3.com'
 
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
