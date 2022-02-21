@@ -3,17 +3,10 @@ USER root
 RUN apt update && \
     apt -y install nodejs && \
     apt -y install npm && \
-    apt -y install wget
+    apt -y install openjdk-11-jdk && \
+    apt -y install maven
 
-RUN wget https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-20.0.0/graalvm-ce-java11-linux-amd64-20.0.0.tar.gz
-RUN mkdir "graalvm-ce-java11-linux-amd64-20.0.0"
-RUN tar -xf graalvm-ce-java11-linux-amd64-20.0.0.tar.gz -C /graalvm-ce-java11-linux-amd64-20.0.0
-RUN mv /graalvm-ce-java11-linux-amd64-20.0.0 /usr/lib/jvm/
-RUN update-alternatives --install /usr/bin/java java /usr/lib/jvm/graalvm-ce-java11-20.0.0/bin/java 2
-RUN update-alternatives --config java
-RUN export GRAALGU=/usr/lib/jvm/graalvm-ce-java11-20.0.0/bin
-RUN export PATH=$JAVA_HOME/BIN:$GRAALGU:$PATH
-RUN apt -y install maven
+RUN export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 EXPOSE 8080
 ENV JAVA_OPTIONS=-Xmx512m
 ENV SPRING_PROFILES_ACTIVE=prod,api-docs
