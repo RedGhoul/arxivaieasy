@@ -15,5 +15,5 @@ COPY . ./app
 WORKDIR "/app"
 RUN mvn package -Pprod -DskipTests -q -e
 RUN ls
-ENTRYPOINT ["java" ,"-jar", "/app/target/ar-xiv-ai-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-Xmx80m" ,"-jar", "/app/target/ar-xiv-ai-0.0.1-SNAPSHOT.jar"]
 
