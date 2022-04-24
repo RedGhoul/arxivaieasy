@@ -8,12 +8,10 @@ RUN apt update && \
 
 RUN export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64
 EXPOSE 8080
-ENV JAVA_OPTIONS=-Xmx512m
 ENV SPRING_PROFILES_ACTIVE=prod,api-docs
 ENV JHIPSTER_SLEEP=30
 COPY . ./app
 WORKDIR "/app"
 RUN mvn package -Pprod -DskipTests -q -e
-RUN ls
 ENTRYPOINT ["java", "-Xmx80m" ,"-jar", "/app/target/ar-xiv-ai-0.0.1-SNAPSHOT.jar"]
 
